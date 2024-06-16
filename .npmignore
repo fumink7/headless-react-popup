@@ -1,0 +1,9 @@
+# Ignore everything
+*
+
+# Except the dist directory and important files
+!dist
+!dist/**
+!package.json
+!README.md
+!LICENSE
