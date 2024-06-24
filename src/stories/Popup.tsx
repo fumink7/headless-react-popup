@@ -10,7 +10,7 @@ const Popup: FC = () => {
     popupRef,
     buttonRef,
     focusItemFirstRef,
-    buttonRef
+    buttonRef,
   );
 
   return (
