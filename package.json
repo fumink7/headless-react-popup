@@ -1,6 +1,9 @@
 {
   "name": "headless-react-popup",
   "version": "1.0.3",
+  "engines": {
+    "node": "20.8.1"
+  },
   "description": "A versatile and accessible headless popup custom hook for React.",
   "main": "dist/usePopup.js",
   "types": "dist/usePopup.d.ts",
