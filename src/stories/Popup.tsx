@@ -1,23 +1,39 @@
-import React, { type FC, useRef } from "react";
+import React, { type FC, useRef, type CSSProperties } from "react";
 import { usePopup } from "../index";
 
 const Popup: FC = () => {
   const popupRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const focusItemFirstRef = useRef<HTMLAnchorElement>(null);
+  const focusItemLastRef = useRef<HTMLButtonElement>(null);
 
-  const { isVisible, togglePopup } = usePopup(
+  const { isVisible, hidePopup } = usePopup(
     popupRef,
     buttonRef,
     focusItemFirstRef,
-    buttonRef,
+    focusItemLastRef,
   );
+
+  const popupStyle: CSSProperties = {
+    visibility: isVisible ? "visible" : "hidden",
+    padding: "1rem",
+    border: "1px solid gray",
+  };
 
   return (
     <aside aria-label="List Popup">
+      <button
+        ref={buttonRef}
+        type="button"
+        aria-label={isVisible ? "open" : "close"}
+        aria-expanded="false"
+        aria-haspopup="true"
+      >
+        {isVisible ? "Close" : "Open"}
+      </button>
       <div
         ref={popupRef}
-        style={{ visibility: isVisible ? "visible" : "hidden" }}
+        style={popupStyle}
         aria-hidden="true"
         tabIndex={-1}
         role="dialog"
@@ -36,17 +52,13 @@ const Popup: FC = () => {
           <li>
             <a href="/">link3</a>
           </li>
+          <li>
+            <button ref={focusItemLastRef} onClick={hidePopup} type="button">
+              Close
+            </button>
+          </li>
         </ul>
       </div>
-      <button
-        ref={buttonRef}
-        type="button"
-        aria-label={isVisible ? "open" : "close"}
-        aria-expanded="false"
-        aria-haspopup="true"
-      >
-        Button
-      </button>
     </aside>
   );
 };

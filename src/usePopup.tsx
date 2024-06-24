@@ -2,11 +2,15 @@ import { type RefObject, useEffect, useRef, useState } from "react";
 
 /**
  * Manages the visibility of a popup.
- * @param popupRef - The popup contents.
- * @param buttonRef - The button that toggles the popup.
- * @param focusItemFirstRef - The first focusable item in the popup.
- * @param focusItemLastRef - The last focusable item in the popup.
- * @returns {Object} isVisible - Whether the popup is visible. togglePopup - Toggles the visibility of the popup.
+ * @param {React.RefObject} popupRef - The popup contents.
+ * @param {React.RefObject} buttonRef - The button that toggles the popup.
+ * @param {React.RefObject} focusItemFirstRef - The first focusable item ref in the popup.
+ * @param {React.RefObject} focusItemLastRef - The last focusable item ref in the popup.
+ * @returns {Object} An object with methods and state related to popup visibility.
+ * @returns {boolean} return.isVisible - Whether the popup is visible.
+ * @returns {function} return.togglePopup - Toggles the visibility of the popup.
+ * @returns {function} return.showPopup - Shows the popup.
+ * @returns {function} return.hidePopup - Hides the popup.
  */
 const usePopup = (
   popupRef: RefObject<HTMLElement>,
@@ -94,6 +98,8 @@ const usePopup = (
   return {
     isVisible,
     togglePopup,
+    showPopup,
+    hidePopup,
   };
 };
 
